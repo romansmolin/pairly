@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { ComponentType } from 'react'
-import { Heart, LayoutDashboard } from 'lucide-react'
+import { Coins, Gift, Heart, LayoutDashboard } from 'lucide-react'
 import { cn } from '@/shared/lib/css/utils'
 
 type AppNavigationProps = {
@@ -27,6 +27,16 @@ const navItems: NavItem[] = [
         label: 'Start Matching',
         href: '/match',
         icon: Heart,
+    },
+    {
+        label: 'Wallet',
+        href: '/wallet',
+        icon: Coins,
+    },
+    {
+        label: 'Gifts',
+        href: '/gifts',
+        icon: Gift,
     },
 ]
 

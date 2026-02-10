@@ -23,7 +23,11 @@ export class PurchaseCreditsController {
 
         try {
             const dto = purchaseCreditsSchema.parse(body)
-            const result = await this.useCase.execute(userId, dto.credits)
+            const result = await this.useCase.execute(userId, {
+                amountEur: dto.amountEur,
+                pricingMode: dto.pricingMode,
+                presetKey: dto.presetKey,
+            })
 
             return NextResponse.json({
                 checkoutToken: result.checkoutToken,
@@ -34,7 +38,7 @@ export class PurchaseCreditsController {
                 throw AppError.validationError(
                     'Invalid request',
                     error.issues.map((issue) => ({
-                        field: issue.path.join('.') || 'credits',
+                        field: issue.path.join('.') || 'amountEur',
                         message: issue.message,
                     })),
                 )

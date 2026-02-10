@@ -36,3 +36,32 @@ export interface CreateTransactionInput {
     paymentTokenId?: string
     pdfInsightId?: string
 }
+
+export type CreditPricingMode = 'preset' | 'custom'
+export type CreditPresetKey = 1 | 5 | 10
+
+export interface PurchaseCreditsRequest {
+    amountEur: number
+    pricingMode?: CreditPricingMode
+    presetKey?: CreditPresetKey
+    consentAccepted: boolean
+}
+
+export interface PurchaseCreditsResponse {
+    checkoutToken: string
+    redirectUrl?: string
+}
+
+export interface WalletSummary {
+    balance: number
+    currency: string
+    totalPurchased: number
+    totalSpent: number
+    pendingCredits: number
+}
+
+export interface WalletResponse {
+    wallet: WalletSummary
+    transactions: CreditTransaction[]
+    total: number
+}

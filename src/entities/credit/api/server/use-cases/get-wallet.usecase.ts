@@ -1,22 +1,8 @@
 import { inject, injectable } from 'inversify'
 import type { ICreditRepository } from '../interfaces/credit-repository.interface'
-import type { CreditTransaction } from '../../../model/types'
+import type { WalletResponse, WalletSummary } from '../../../model/types'
 
 const DEFAULT_CURRENCY = 'EUR'
-
-export type WalletSummary = {
-    balance: number
-    currency: string
-    totalPurchased: number
-    totalSpent: number
-    pendingCredits: number
-}
-
-export type WalletResponse = {
-    wallet: WalletSummary
-    transactions: CreditTransaction[]
-    total: number
-}
 
 @injectable()
 export class GetWalletUseCase {

@@ -26,6 +26,9 @@ import { SecureProcessorReturnController } from '@/entities/payment/api/server/c
 import { SecureProcessorWebhookController } from '@/entities/payment/api/server/controller/secure-processor-webhook.controller'
 import { DashboardController, DashboardRepository, DashboardService } from '@/entities/dashboard'
 import { MatchController, MatchRepository, MatchService } from '@/entities/match'
+import { GiftController } from '@/entities/gift/api/server/controllers/gift.controller'
+import { GiftRepository } from '@/entities/gift/api/server/repositories/gift.repository'
+import { GiftService } from '@/entities/gift/api/server/services/gift.service'
 
 export const container = new Container({
     defaultScope: 'Singleton',
@@ -66,6 +69,11 @@ export function initializeContainer(): void {
     container.bind(MatchRepository).toSelf()
     container.bind(MatchService).toSelf()
     container.bind(MatchController).toSelf()
+
+    // Gift entity bindings
+    container.bind(GiftRepository).toSelf()
+    container.bind(GiftService).toSelf()
+    container.bind(GiftController).toSelf()
 }
 
 // Initialize container on module load
