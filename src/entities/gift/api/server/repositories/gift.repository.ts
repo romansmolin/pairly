@@ -1,13 +1,16 @@
 import 'server-only'
 
 import { injectable } from 'inversify'
-import type { Prisma } from '@prisma/client'
 import { AppError } from '@/shared/errors/app-error'
 import { prisma } from '@/shared/lib/database/prisma'
 
 type GiftCatalogRow = Awaited<ReturnType<typeof prisma.gift_catalog.findMany>>[number]
 type GiftSendRow = Awaited<ReturnType<typeof prisma.gift_send.findMany>>[number]
 type GiftInventoryBaseRow = Awaited<ReturnType<typeof prisma.gift_inventory.findMany>>[number]
+type TransactionClient = Pick<
+    typeof prisma,
+    'user_credits' | 'gift_inventory' | 'credit_transaction' | 'gift_send'
+>
 
 export type GiftSendHistoryRow = GiftSendRow & { gift: GiftCatalogRow }
 
@@ -92,7 +95,7 @@ export class GiftRepository {
     }
 
     async buyGiftTransactional(input: BuyGiftTransactionalInput): Promise<BuyGiftTransactionalResult> {
-        return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+        return prisma.$transaction(async (tx: TransactionClient) => {
             await tx.user_credits.upsert({
                 where: { userId: input.userId },
                 update: {
@@ -179,7 +182,7 @@ export class GiftRepository {
     }
 
     async sendGiftTransactional(input: SendGiftTransactionalInput): Promise<SendGiftTransactionalResult> {
-        return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+        return prisma.$transaction(async (tx: TransactionClient) => {
             const updateInventoryResult = await tx.gift_inventory.updateMany({
                 where: {
                     userId: input.senderUserId,
