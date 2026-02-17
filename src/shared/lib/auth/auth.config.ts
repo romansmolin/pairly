@@ -2,20 +2,25 @@ import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { prisma } from '../database/prisma'
 import { getEnvVar } from '@/shared/utils/get-env-var'
+import { sendWelcomeEmail } from '@/shared/lib/email/mailer'
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: 'postgresql',
     }),
-    // databaseHooks: {
-    //     user: {
-    //         create: {
-    //             async after(user) {
-    //                 await sendWelcomeEmail(user.email, user.name)
-    //             },
-    //         },
-    //     },
-    // },
+    databaseHooks: {
+        user: {
+            create: {
+                async after(user) {
+                    if (!user.email) return
+                    await sendWelcomeEmail({
+                        email: user.email,
+                        username: user.name,
+                    })
+                },
+            },
+        },
+    },
     emailAndPassword: {
         enabled: true,
         requireEmailVerification: false,
