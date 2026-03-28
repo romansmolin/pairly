@@ -130,9 +130,7 @@ model credit_transaction {
   amount         Int
   status         CreditTransactionStatus @default(SUCCESSFUL)
   reason         String?
-  generationId   String?
   paymentTokenId String?                 @unique
-  pdfInsightId   String?
   createdAt      DateTime                @default(now())
 
   user         user           @relation(fields: [userId], references: [id], onDelete: Cascade)
