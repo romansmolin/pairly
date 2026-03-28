@@ -1,0 +1,1 @@
+[   13853ms] [WARNING] Image with src "/assets/Gemini_Generated_Image_i509epi509epi509.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/f1500_next_dist_f8d3ae1c._.js:2297

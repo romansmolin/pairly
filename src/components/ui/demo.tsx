@@ -1,5 +1,5 @@
-import AboutSection2 from "@/components/ui/about-section-2"
+import { Component } from "@/components/ui/flickering-footer";
 
 export default function DemoOne() {
-  return <AboutSection2 />
+  return <Component />;
 }

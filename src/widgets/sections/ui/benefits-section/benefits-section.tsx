@@ -1,4 +1,9 @@
+'use client'
+
 import { Compass, HeartHandshake, Lock, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react'
+import BlurText from '@/shared/components/BlurText'
+import SpotlightCard from '@/shared/components/SpotlightCard'
+import { ScrollReveal } from '@/shared/ui/scroll-reveal'
 
 const benefits = [
     {
@@ -39,30 +44,50 @@ const benefits = [
 
 export const BenefitsSection = () => {
     return (
-        <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" id="safety">
+        <section
+            className="mx-auto w-full max-w-7xl rounded-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+            id="safety"
+            style={{
+                backgroundImage:
+                    'radial-gradient(ellipse at center, var(--primary) 0%, transparent 70%)',
+            }}
+        >
             <div className="mb-8 flex flex-col gap-3 sm:mb-10">
-                <h2 className="text-3xl font-extrabold uppercase leading-tight sm:text-4xl lg:text-5xl">
-                    Why people choose <span className="text-primary">Pairly</span>
-                </h2>
-                <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
-                    Built for meaningful connections with less noise and more intention.
-                </p>
+                <BlurText
+                    text="Why people choose Pairly"
+                    animateBy="words"
+                    delay={100}
+                    direction="bottom"
+                    className="text-3xl font-extrabold uppercase leading-tight sm:text-4xl lg:text-5xl"
+                    animationFrom={{ filter: 'blur(10px)', opacity: 0, y: 10 }}
+                    animationTo={[
+                        { filter: 'blur(5px)', opacity: 0.5, y: 5 },
+                        { filter: 'blur(0px)', opacity: 1, y: 0 },
+                    ]}
+                />
+                <ScrollReveal delay={0.2} distance={15}>
+                    <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
+                        Built for meaningful connections with less noise and more intention.
+                    </p>
+                </ScrollReveal>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {benefits.map(({ title, description, icon: Icon, className }) => (
-                    <article
-                        key={title}
-                        className={`rounded-2xl border border-border bg-card p-5 sm:p-6 ${className ?? ''}`}
-                    >
-                        <div className="mb-4 inline-flex rounded-xl border border-border bg-background p-2.5">
-                            <Icon className="size-5 text-primary" />
-                        </div>
-                        <h3 className="mb-2 text-lg font-bold sm:text-xl">{title}</h3>
-                        <p className="text-sm leading-6 text-muted-foreground sm:text-base">
-                            {description}
-                        </p>
-                    </article>
+                {benefits.map(({ title, description, icon: Icon, className }, index) => (
+                    <ScrollReveal key={title} delay={index * 0.1} distance={25} className={className ?? ''}>
+                        <SpotlightCard
+                            className="!rounded-2xl !border-border !bg-card !p-5 sm:!p-6 h-full"
+                            spotlightColor="rgba(255, 209, 213, 0.25)"
+                        >
+                            <div className="mb-4 inline-flex rounded-xl border border-border bg-background p-2.5">
+                                <Icon className="size-5 text-primary" />
+                            </div>
+                            <h3 className="mb-2 text-lg font-bold sm:text-xl">{title}</h3>
+                            <p className="text-sm leading-6 text-muted-foreground sm:text-base">
+                                {description}
+                            </p>
+                        </SpotlightCard>
+                    </ScrollReveal>
                 ))}
             </div>
         </section>

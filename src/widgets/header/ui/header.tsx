@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { SheetTrigger, SheetContent, SheetHeader, SheetTitle, Sheet } from '@/shared/ui/sheet'
 import { Separator } from '@/shared/ui/separator'
+import { PairlyLogo } from '@/shared/ui/pairly-logo'
 
 const navigationMenu = [
     { label: 'How it works', href: '/#how-it-works' },
@@ -14,7 +15,8 @@ const navigationMenu = [
 export const Header = () => {
     return (
         <header className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="text-2xl text-primary font-bold tracking-wider">
+            <Link href="/" className="flex items-center gap-2 text-2xl text-primary font-bold tracking-wider">
+                <PairlyLogo />
                 Pairly
             </Link>
             <nav className="hidden sm:block">

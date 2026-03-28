@@ -1,0 +1,3 @@
+[   34126ms] [WARNING] Image with src "/assets/Gemini_Generated_Image_i509epi509epi509.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/f1500_next_dist_f8d3ae1c._.js:2297
+[   34151ms] [WARNING] Image with src "/assets/Gemini_Generated_Image_i509epi509epi509.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ http://localhost:3000/_next/static/chunks/f1500_next_dist_f8d3ae1c._.js:2297
