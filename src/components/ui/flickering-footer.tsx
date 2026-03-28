@@ -575,10 +575,10 @@ export const siteConfig = {
     {
       title: "Legal",
       links: [
-        { id: 9, title: "Terms of Service", url: "/tos" },
-        { id: 10, title: "Return Policy", url: "/return-policy" },
-        { id: 11, title: "Privacy", url: "#" },
-        { id: 12, title: "Contact", url: "#" },
+        { id: 9, title: "Terms of Service", url: "/terms-of-service" },
+        { id: 10, title: "Privacy Policy", url: "/privacy-policy" },
+        { id: 11, title: "Return Policy", url: "/return-policy" },
+        { id: 12, title: "Cookie Policy", url: "/cookie-policy" },
       ],
     },
   ],
